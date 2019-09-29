@@ -10,16 +10,16 @@ var question = 0;
 
 var count = 15;
 
-//Setting up the question format
+var counter = 0;
 
-// $("question").append(bobsBurgersQuestion[0].question)
+//Setting up the question format
 
 var bobsBurgersQuestion = 
 [
     {
     question: "When is Bob and Linda's Anniversary?",
     choices: ["A: March 3rd", "B: September 3rd", "C: November 3rd", "D: October 3rd"],
-    correctAnswer: 1
+    correctAnswer: "September 3rd"
 }, {
     question: "Which of the following lines was NOT said by Tina?",
     choices: ["A: See you soon, Baboon", "B: More like school needs to get ready for me", "C: I am a strong, sensual woman", "D: Alright!"],
@@ -47,18 +47,29 @@ var bobsBurgersQuestion =
 },
 ];
 
+//Set current question equal to variable. 
 function askQuestion() {
-    for(i=0; i<bobsBurgersQuestion.length; i++){
-        $("#quiz").append(bobsBurgersQuestion[i].question);
-    }
+    //set question variable
+    var currentQuestion = bobsBurgersQuestion[counter].question;
+    //set choices variable
+    var anw = bobsBurgersQuestion[counter].choices;
+    //use for loop
+
+    //append question to div
+    $("#quiz").append(currentQuestion);
+    //append choices to div
+    $("#awn").append(anw)
+
+    //increment counter up
+    
 }
 
-function showQuestion() {
-    var question = bobsBurgersQuestion[question].question;
-    var choices = bobsBurgersQuestion[question].choices;
+// function showAwnsers() {
+//     // var question = bobsBurgersQuestion[question].question;
+//     var anw = bobsBurgersQuestion[counter].choices;
 
-    $("#quiz").text(question);
-}
+//     $("#awn").append(anw)
+// }
 
 
 $(".start").click(function(){
