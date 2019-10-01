@@ -14,38 +14,38 @@ var counter = 0;
 
 //Setting up the question format
 
-var bobsBurgersQuestion = 
-[
-    {
-    question: "When is Bob and Linda's Anniversary?",
-    choices: ["A: March 3rd", "B: September 3rd", "C: November 3rd", "D: October 3rd"],
-    correctAnswer: "September 3rd"
-}, {
-    question: "Which of the following lines was NOT said by Tina?",
-    choices: ["A: See you soon, Baboon", "B: More like school needs to get ready for me", "C: I am a strong, sensual woman", "D: Alright!"],
-    correctAnswer: 3
-}, {
-    question: "What are the ears on Louise's Hat?",
-    choices: ["A: Mouse", "B: Cat", "C: Bunny", "D: Devil"],
-    correctAnswer: 2
-}, {
-    question: "Which character on the show is actually voiced by a woman?",
-    choices: ["A: Louise", "B: Tina", "C: Linda", "D: Gretchen"],
-    correctAnswer: 0
-}, {
-    question: "Which recess activity did Mr. Frond introduce that Gene originally hated?",
-    choices: ["A: Tether Ball", "B: GaGa Ball", "C: Racket Ball", "D: Volleyball"],
-    correctAnswer: 1
-}, {
-    question: "What is the name of Gayle's infamous cat?",
-    choices: ["A: Mr. Whiskers", "B: Mr. Whispers", "C: Mr. Business", "D: Mr. Giggles"],
-    correctAnswer: 2
-}, {
-    question: "Which of the following changes in every episode?",
-    choices: ["A: The storefront next door", "B: The Burger of the Day", "C: The color of the front door", "D: A & B"],
-    correctAnswer: 3
-},
-];
+var bobsBurgersQuestion =
+    [
+        {
+            question: "When is Bob and Linda's Anniversary?",
+            choices: ["March 3rd ", "September 3rd ", "November 3rd ", "October 3rd "],
+            correctAnswer: "September 3rd "
+        }, {
+            question: "Which of the following lines was NOT said by Tina?",
+            choices: ["See you soon, Baboon ", "More like school needs to get ready for me ", "I am a strong, sensual woman ", "If she were a spice, she would be flour "],
+            correctAnswer: "If she were a spice, she would be flour "
+        }, {
+            question: "What are the ears on Louise's Hat?",
+            choices: ["Mouse ", "Cat ", "Bunny ", "Devil "],
+            correctAnswer: "Bunny"
+        }, {
+            question: "Which character on the show is actually voiced by a woman?",
+            choices: ["Louise ", "Tina ", "Linda ", "Gretchen "],
+            correctAnswer: "Louise"
+        }, {
+            question: "Which recess activity did Mr. Frond introduce that Gene originally hated?",
+            choices: ["Tether Ball ", "GaGa Ball ", "Racket Ball ", "Volleyball "],
+            correctAnswer: "GaGa Ball"
+        }, {
+            question: "What is the name of Gayle's infamous cat?",
+            choices: ["Mr. Whiskers ", "Mr. Whispers ", "Mr. Business ", "Mr. Giggles "],
+            correctAnswer: "Mr. Business"
+        }, {
+            question: "Which of the following changes in every episode?",
+            choices: ["The storefront next door ", "The Burger of the Day ", "The color of the front door ", "1 & 2 "],
+            correctAnswer: "1 & 2"
+        },
+    ];
 
 //Set current question equal to variable. 
 function askQuestion() {
@@ -53,26 +53,38 @@ function askQuestion() {
     var currentQuestion = bobsBurgersQuestion[counter].question;
     //set choices variable
     var anw = bobsBurgersQuestion[counter].choices;
+
+    $question = $("<div>").addClass("form-group text-center qtext");
     //use for loop
+    for (var i = 0; i < question.length; i++) {
+
+            var choiceLabel = $("<button>");
+            choiceLabel.text(question.choices[i])
+            .addClass("button")
+            .appendTo(choice);
+            choice.appendTo($question);
+    }
+
+
 
     //append question to div
     $("#quiz").append(currentQuestion);
     //append choices to div
-    $("#awn").append(anw)
+    $("#anw").append(anw)
 
     //increment counter up
-    
+
 }
 
-// function showAwnsers() {
+// function showAnswers() {
 //     // var question = bobsBurgersQuestion[question].question;
 //     var anw = bobsBurgersQuestion[counter].choices;
 
-//     $("#awn").append(anw)
+//     $("#anw").append(anw)
 // }
 
 
-$(".start").click(function(){
+$(".start").click(function () {
     askQuestion();
     $(".start").remove();
 });
