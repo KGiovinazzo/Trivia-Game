@@ -1,10 +1,10 @@
 $("document").ready(function () {
     //Declaring the variables
-
-    var questionIndex,
-    wins,
-    losses,
-    currQuestion;
+    var card = $(".card-body")
+    var questionIndex = 0;
+    var wins
+    var losses
+    var currQuestion
 
     // var correctAnswer = 0;
 
@@ -58,64 +58,99 @@ $("document").ready(function () {
             },
         ];
 
-    
+
 
     $(".start").click(function () {
         initializeGame();
         $(".start").remove();
     });
 
-    $("button").on("click", function () {
-        var answerChoice = $(this).text();
+    $(document).on("click", "#choice", function () {
+        var choices = $(this).val();
+        console.log(choices)
 
-        checkAnswer(answerChoice);
+        checkAnswer(choices);
     });
 
-    function initializeGame(){
-        questionIndex = 0;
+    function initializeGame() {
+        // questionIndex = 0;
         wins = 0;
         losses = 0;
-        currQuestion = bobsBurgersQuestion[questionIndex];
-        populateView(currQuestion);
+        // currQuestion = bobsBurgersQuestion[questionIndex];
+        populateView();
     };
 
-function populateView(questionObject){
-    $("#question").text(questionObject.question);
-    $("#question-img").attr('src', questionObject.questionImg);
-    for(var i=0; i<questionObject.choices.length; i++){
-        $("#answer"+i).text(questionObject.choices[i]);
-    }
-};
+    function populateView() {
 
-function checkAnswer(answerChoice){
-    if(currQuestion && answerChoice == currQuestion.correctAnswer){
-        wins++;
-        nextQuestion();
-    }else if(currQuestion && answerChoice !== currQuestion.correctAnswer){
-        losses++;
-        nextQuestion();
-    }
-};
+        console.log(bobsBurgersQuestion[questionIndex])
+        // for (var i = 0; i < bobsBurgersQuestion.length; i++) {
+        card.html("<h2>" + bobsBurgersQuestion[questionIndex].question + "</h2>");
+        for (var j = 0; j < bobsBurgersQuestion[questionIndex].choices.length; j++) {
+            card.append("<input id='choice' type='button' name='question-" + questionIndex +
+                "' value='" + bobsBurgersQuestion[questionIndex].choices[j] + "''>");
+        }
+        // }
 
-function nextQuestion(){
-    questionIndex++;
-    currQuestion = bobsBurgersQuestion[questionIndex];
-    if(currQuestion){
-        populateView(currQuestion);
-    }else{
-        endGame();
-    }
-}
 
-function endGame(){
-    if(wins >= 6){
-        alert("You've Won! Alllriiight!");
-        initializeGame();
-    }else{
-        alert("You've Lost.. UHhhhh");
-        initializeGame();
+
+
+
+
+        // $("#question").text(questionObject.question);
+        // $("#question-img").attr('src', questionObject.questionImg);
+        // for(var i=0; i<questionObject.choices.length; i++){
+        //     $("#answer"+i).text(questionObject.choices[i]);
+        // }
     }
-};
+    //     function initializeGame(){
+    //         questionIndex = 0;
+    //         wins = 0;
+    //         losses = 0;
+    //         currQuestion = bobsBurgersQuestion[questionIndex];
+    //         populateView(currQuestion);
+    //     };
+
+    // function populateView(questionObject){
+    //     console.log(questionObject)
+    //     $("#question").text(questionObject.question);
+    //     $("#question-img").attr('src', questionObject.questionImg);
+    //     for(var i=0; i<questionObject.choices.length; i++){
+    //         $("#answer"+i).text(questionObject.choices[i]);
+    //     }
+    // };
+
+    function checkAnswer(choices) {
+        console.log(bobsBurgersQuestion[questionIndex].correctAnswer)
+        if (choices == bobsBurgersQuestion[questionIndex].correctAnswer) {
+            wins++;
+            nextQuestion();
+            console.log("working")
+        } else {
+            losses++;
+            nextQuestion();
+        }
+    };
+
+    function nextQuestion() {
+        console.log(questionIndex)
+        questionIndex++;
+        currQuestion = bobsBurgersQuestion[questionIndex];
+        if (currQuestion) {
+            populateView(currQuestion);
+        } else {
+            endGame();
+        }
+    }
+
+    function endGame() {
+        if (wins >= 5) {
+            alert("You've Won! Alllriiight!");
+            initializeGame();
+        } else {
+            alert("You've Lost.. UHhhhh");
+            initializeGame();
+        }
+    };
 
 });
 
